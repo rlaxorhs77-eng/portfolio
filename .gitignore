@@ -5,3 +5,6 @@ out/
 .DS_Store
 *.tsbuildinfo
 작업기록/
+
+# Amplify 빌드 캐시용 pnpm 스토어
+.pnpm-store/
