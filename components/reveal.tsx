@@ -130,6 +130,7 @@ export function Reveal() {
 
     const nav = document.querySelector<HTMLElement>("[data-section-nav]");
     const links = Array.from(nav?.querySelectorAll<HTMLAnchorElement>("a[href^='#']") ?? []);
+    const dotLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>("[data-section-dots] a[href^='#']"));
     const sections = links.map((link) => document.getElementById(decodeURIComponent(link.hash.slice(1))));
     const indicator = nav?.querySelector<HTMLElement>(".nav-indicator");
     const progressBar = document.querySelector<HTMLElement>(".scroll-progress");
@@ -138,6 +139,10 @@ export function Reveal() {
     const markActive = (index: number) => {
       active = index;
       links.forEach((link, i) => { if (i === index) link.setAttribute("aria-current", "location"); else link.removeAttribute("aria-current"); });
+      dotLinks.forEach((link) => {
+        if (link.hash === links[index]?.hash) link.setAttribute("aria-current", "location");
+        else link.removeAttribute("aria-current");
+      });
       if (!nav || !indicator || !links[index]) return;
       const bounds = nav.getBoundingClientRect();
       const item = links[index].getBoundingClientRect();
@@ -183,8 +188,19 @@ export function Reveal() {
       let element = event.target.closest<HTMLElement>("[data-reveal]");
       while (element) { show(element, true); element = element.parentElement?.closest<HTMLElement>("[data-reveal]") ?? null; }
     };
-    const beforePrint = () => { printing = true; showAll(); };
-    const afterPrint = () => { printing = false; if (!preference.matches) root.classList.add("motion-enabled"); };
+    let printExpanded: HTMLDetailsElement[] = [];
+    const beforePrint = () => {
+      printing = true;
+      showAll();
+      printExpanded = [...document.querySelectorAll<HTMLDetailsElement>(".troubleshooting-case:not([open])")];
+      printExpanded.forEach((entry) => { entry.open = true; });
+    };
+    const afterPrint = () => {
+      printExpanded.forEach((entry) => { entry.open = false; });
+      printExpanded = [];
+      printing = false;
+      if (!preference.matches) root.classList.add("motion-enabled");
+    };
     const onHashChange = () => {
       const target = document.getElementById(decodeURIComponent(window.location.hash.slice(1)));
       if (target) {
@@ -217,6 +233,7 @@ export function Reveal() {
       added.forEach((element) => element.removeAttribute("data-reveal"));
       delayed.forEach((element) => element.style.removeProperty("--reveal-delay"));
       links.forEach((link) => link.removeAttribute("aria-current"));
+      dotLinks.forEach((link) => link.removeAttribute("aria-current"));
       indicator?.removeAttribute("style");
       progressBar?.removeAttribute("style");
       preference.removeEventListener("change", onPreferenceChange);

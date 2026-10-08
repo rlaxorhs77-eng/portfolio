@@ -1,18 +1,19 @@
-// Source: 작업기록/commit-evidence.json (2026-10-08).
+// Source: 작업기록/commit-scope-correction-20261008.json.
+// User confirmed iPhone/Apple Watch apps were not their work and are retired.
+// Conservatively exclude every apps/ commit, including mixed-path changes.
 // Merge commits excluded. Counts use all branches unless explicitly marked main.
 // Path counts overlap: do not sum them. Unconfirmed identities are not included.
 // Only fields used by the site are selected; author identities are not published.
 export const commitEvidence = {
-  total: 320, // all.total
-  mainTotal: 214, // main.total
+  total: 348,
+  mainTotal: 235,
   first: "2026-06-17", // all.first
   last: "2026-10-08", // all.last
-  dashboard: 203, // all.by_path["dashboard-web"].my_commits
-  dbKeywords: 88, // all.db_keyword_commits; related work described in TASK_P5c §1–2.
-  db: 4, // all.by_path.db.my_commits
+  dashboard: 211,
+  db: 28,
   gaspod: { count: 6, first: "2026-07-31", last: "2026-09-17" }, // all.by_path.gaspod
   hardware: 2, // all.by_path.hardware.my_commits
-  tablet: { count: 53, first: "2026-09-15", last: "2026-10-07" }, // all.by_path["tablet-app"]
+  tablet: { count: 51, first: "2026-09-15", last: "2026-10-07" },
   watchMl: { count: 9, first: "2026-08-12", last: "2026-08-28" }, // all.by_path["ml-modules"]
 } as const;
 
@@ -23,9 +24,9 @@ export const commitCopy = {
     value: String(c.total),
     label: `조직 레포 커밋 · ${c.first.slice(0, 7).replace("-", ".")}–${c.last.slice(5, 7)} · 전 브랜치`,
   },
-  resume: `조직 레포 기여: 커밋 ${c.total}건(전 브랜치) · main ${c.mainTotal}건`,
+  resume: `조직 레포 기여: 커밋 ${c.total}건(전 브랜치) · main ${c.mainTotal}건 · 담당하지 않은 구 iPhone·Apple Watch 앱 관련 커밋 제외`,
   roles: {
-    db: `커밋 근거 — 관제 웹·서버 ${c.dashboard}건 중 DB·RLS·마이그레이션·크론·판정 SQL 관련 ${c.dbKeywords}건, db/ ${c.db}건 (${c.first.slice(0, 7)} ~ ${c.last.slice(5, 7)})`,
+    db: `커밋 근거 — 관제 웹·서버 ${c.dashboard}건 · db/ ${c.db}건 (${c.first.slice(0, 7)} ~ ${c.last.slice(5, 7)}). 경로별 집계는 중복될 수 있습니다`,
     hardware: `커밋 근거 — Final_GasPod ${c.gaspod.count}건 · hardware/ ${c.hardware}건 (${c.gaspod.first.slice(0, 7)} ~ ${c.gaspod.last.slice(5, 7)}). 펌웨어·회로·케이스는 실물 작업이 대부분이라 커밋 수는 적다`,
     // Sole authorship follows TASK_P5c §1–2, not a new count of all_authors.
     tablet: `커밋 근거 — tablet-app/ ${c.tablet.count}건, 전부 본인 (${c.tablet.first} ~ ${c.tablet.last.slice(5)})`,

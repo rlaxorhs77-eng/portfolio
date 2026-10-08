@@ -56,7 +56,7 @@ export const project = {
     viewerUrl: "/diagrams/vitalguard-architecture.html",
     viewerLabel: "인터랙티브로 보기 ↗",
     viewerNote: "(뷰어 조작 버튼은 영어)",
-    scope: `${dashboardContribution.statement}. PostgreSQL은 신규 설계·검증, Apple Watch는 ML 모델링이 내 담당입니다. 태블릿은 요구정의·UI/UX 계획·검수·실기기 검증을 맡았습니다. AED-alert는 응급 위치 유도와 배터리·패드 교환주기 상태 경보를 제공합니다.`,
+    scope: `${dashboardContribution.statement}. PostgreSQL은 신규 설계·검증, 워치는 ML 모델링이 내 담당입니다. 폰·워치 앱 구현은 팀원 담당입니다. 태블릿은 요구정의·UI/UX 계획·검수·실기기 검증을 맡았습니다. AED-alert는 응급 위치 유도와 배터리·패드 교환주기 상태 경보를 제공합니다.`,
     principle: "입력이 부족하면 ‘검토 필요’로 분류합니다. 금액은 재현 가능한 규칙으로 계산하고, 최종 판단은 사람이 합니다.",
     legend: "앰버 실선·연한 앰버 면: 내 담당 · 회색 점선: 팀원 담당(관제는 화면·API) · 중립 실선: 팀 공동 · 중립 점선 구획: 입력 축",
   },

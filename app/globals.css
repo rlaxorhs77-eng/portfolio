@@ -16,6 +16,7 @@
   --mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
   /* Sticky header: 10; skip link: 20; native dialog: browser top layer. */
   --layer-header: 10;
+  --layer-section-nav: 9;
   --layer-skip: 20;
 }
 
@@ -51,7 +52,18 @@ strong { font-weight: 650; }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 ::selection { color: var(--text); background: var(--accent-soft); }
 .container { width: 100%; max-width: var(--maxw); padding-inline: 16px; margin-inline: auto; min-width: 0; }
-.document-section { padding-block: 56px; border-bottom: 1px solid var(--line); }
+.document-section { padding-block: 56px; border-bottom: 1px solid color-mix(in srgb, var(--line) 32%, transparent); }
+/* Full-width chapter surfaces share the existing amber / neutral typography. */
+#요약 { background: #eee4d3; }
+#이력 { background: #f5f3ed; }
+#소개 { background: #e2e8de; }
+#프로젝트 { background: #e2e8ec; }
+#역할 { background: #f2ebdd; }
+#문제해결 { background: #eae0d9; }
+#영상 { background: #dce3e7; }
+#보도 { background: #edf0e7; }
+#화면 { background: #e8e1d6; }
+#연락 { background: #dce5df; }
 .document-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 24px; }
 .document-grid > *, .section-content > * { min-width: 0; max-width: 100%; }
 .section-content { min-width: 0; width: 100%; max-width: 760px; }
@@ -80,9 +92,26 @@ strong { font-weight: 650; }
 .brand { display: flex; align-items: baseline; gap: 12px; font-weight: 700; min-height: 36px; }
 .brand span { color: var(--muted); font-size: 14px; font-weight: 400; }
 .site-header nav { position: relative; width: 100%; min-width: 0; }
-.site-header nav ul { display: grid; grid-template-columns: repeat(9, minmax(0, 1fr)); }
+.site-header nav ul { display: grid; grid-template-columns: repeat(10, minmax(0, 1fr)); }
 .site-header nav li { min-width: 0; }
 .site-header nav a { display: block; text-align: center; padding-block: 10px; min-height: 44px; font-size: 14px; }
+
+.section-dots { position: fixed; right: max(10px, env(safe-area-inset-right)); top: 50%; transform: translateY(-50%); z-index: var(--layer-section-nav); }
+.section-dots a { width: 32px; height: 30px; display: grid; place-items: center; border-radius: 50%; }
+.section-dots a > span { display: block; width: 9px; height: 9px; border-radius: 50%; background: #cbd0d5; box-shadow: 0 0 0 1px #92999e; }
+.section-dots a[aria-current="location"] > span { background: #ffffff; transform: scale(1.3); box-shadow: 0 0 0 1px #92999e, 0 1px 5px rgb(45 54 59 / 22%); }
+.section-dots a:hover > span { transform: scale(1.3); }
+.section-dots a:active > span { transform: scale(.9); }
+@media (max-width: 1199px) {
+  main > .document-section > .container { padding-right: 56px; }
+}
+@media (min-width: 1200px) {
+  .section-dots { right: 24px; }
+  .section-dots a { width: 40px; height: 34px; }
+}
+@media (max-height: 500px) {
+  .section-dots a { height: 24px; }
+}
 
 .hero { padding-block: 40px 56px; }
 .hero-positioning { margin-top: 10px; font-size: 20px; font-weight: 600; letter-spacing: -.02em; }
@@ -204,6 +233,16 @@ summary { cursor: pointer; min-height: 44px; padding-block: 8px; font-size: 16px
 .role-copy h4 { margin-bottom: 12px; }
 .role-copy p + p { margin-top: 14px; }
 .result-sentence { font-weight: 650; }
+.troubleshooting > .lead { margin-bottom: 24px; }
+.troubleshooting-case { border-top: 1px solid var(--line); padding-block: 20px; }
+.troubleshooting-case summary { padding-block: 4px; }
+.case-area { display: block; font-size: 14px; color: var(--muted); margin-bottom: 6px; }
+.case-title { font-size: 20px; font-weight: 650; letter-spacing: -.02em; }
+.case-story { display: grid; gap: 18px; margin-top: 24px; }
+.case-story > div { display: grid; grid-template-columns: 48px minmax(0, 1fr); gap: 16px; }
+.case-story dt { font-weight: 650; }
+.case-story dd { min-width: 0; overflow-wrap: anywhere; }
+.case-evidence { margin-top: 20px; font-size: 14px; color: var(--muted); overflow-wrap: anywhere; }
 .artifacts { margin-block: 28px; }
 .artifacts h4 { font-size: 16px; }
 .artifacts .small { margin-top: 4px; }
@@ -330,6 +369,7 @@ summary { cursor: pointer; min-height: 44px; padding-block: 8px; font-size: 16px
 }
 @media (prefers-reduced-motion: no-preference) {
   html { scroll-behavior: smooth; }
+  .section-dots a > span { transition: background-color 180ms ease, transform 180ms ease; }
   /* Pending observation never hides content. CSS starts only after intersection
      and reaches its final state even when JS frame callbacks stop. */
   .motion-enabled .reveal-shown { animation: reveal-in 500ms var(--motion-ease) var(--reveal-delay, 0ms) both; }
@@ -371,6 +411,8 @@ summary { cursor: pointer; min-height: 44px; padding-block: 8px; font-size: 16px
   .section-content { max-width: none; }
   .section-label { margin-bottom: 24px; }
   .document-section { padding-block: 0 28px; border: 0; break-before: page; }
+  main > .document-section { background: var(--bg); }
+  main > .document-section > .container { padding-inline: 0; }
   .hero { break-before: auto; }
   .role + .role { break-before: page; margin-top: 0; padding-top: 0; border: 0; }
   h1, h2, h3, h4, caption, .role-heading { break-after: avoid; }

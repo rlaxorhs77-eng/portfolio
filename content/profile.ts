@@ -46,7 +46,7 @@ export const resume = {
   skillNote: "DB·하드웨어·워치 ML 담당 · Kotlin/Compose는 태블릿 요구정의·검수 범위",
   integrationLabel: "관제·웨어러블 연동 기술",
   integrationTags: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Google Cloud Run", "GitHub Actions"],
-  platformNote: "팀원 담당 폰·워치 앱: iOS/watchOS(Swift) · Android/Wear OS(Flutter)",
+  platformNote: "팀원 담당 폰·워치 앱: Android/Wear OS(Flutter). 구 iPhone·Apple Watch 앱은 폐기됐으며 제 구현 범위에 포함하지 않습니다.",
   // 출처: content-inventory.md:157,181,200-209,215,228,250,259,283-284,357
 } as const;
 

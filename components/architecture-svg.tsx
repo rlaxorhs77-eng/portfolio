@@ -65,15 +65,15 @@ export function ArchitectureSvg() {
           <text data-node-label="" data-detail-anchor="" x="617.5" y="122" className="t-primary" fontSize="12" fontWeight="600" textAnchor="middle">{"국세청 · 법제처 · 팀원 담당"}</text>
           <text data-detail="context" x="617.5" y="138" className="t-muted" fontSize="12" textAnchor="middle">{"사업자 진위 · 요율 고시"}</text>
         </g>
-        <g id="node-vg-watch-fall" data-node-id="vg-watch-fall" data-node-label="Apple Watch 생체·낙상 (ML 모델링: 내 담당)" data-node-kind="external" data-node-sublabel="온디바이스 ML 3종 · 앱: 팀원 담당" data-node-context="축② 산업안전 플랫폼 — 현장 물증을 만든다" data-owner="self" className="archify-node" style={{ "--node-delay": "180ms" } as CSSProperties}>
-          <title>{"Apple Watch 생체·낙상 (ML 모델링: 내 담당) · 온디바이스 ML 3종 · 앱: 팀원 담당 · 축② 산업안전 플랫폼 — 현장 물증을 만든다"}</title>
+        <g id="node-vg-watch-fall" data-node-id="vg-watch-fall" data-node-label="워치 생체·낙상 (ML 모델링: 내 담당)" data-node-kind="external" data-node-sublabel="온디바이스 ML 3종 · 앱: 팀원 담당" data-node-context="축② 산업안전 플랫폼 — 현장 물증을 만든다" data-owner="self" className="archify-node" style={{ "--node-delay": "180ms" } as CSSProperties}>
+          <title>{"워치 생체·낙상 (ML 모델링: 내 담당) · 온디바이스 ML 3종 · 앱: 팀원 담당 · 축② 산업안전 플랫폼 — 현장 물증을 만든다"}</title>
           <rect x="30" y="270" width="300" height="88" rx="6" className="c-mask" />
           <rect x="30" y="270" width="300" height="88" rx="6" className="c-external archify-node-shape" strokeWidth="1.5" />
           <g aria-hidden="true" data-semantic-sigil="external" className="semantic-sigil s-external" transform="translate(36 276) scale(0.6875)">
             <rect x="2.5" y="5" width="8.5" height="8" rx="1.5" />
             <path d="M8 2.5h5.5V8M13.5 2.5 7.5 8.5" />
           </g>
-          <text data-node-label="" data-detail-anchor="" x="180" y="312" className="t-primary" fontSize="12" fontWeight="600" textAnchor="middle">{"Apple Watch 생체·낙상 (ML 모델링: 내 담당)"}</text>
+          <text data-node-label="" data-detail-anchor="" x="180" y="312" className="t-primary" fontSize="12" fontWeight="600" textAnchor="middle">{"워치 생체·낙상 (ML 모델링: 내 담당)"}</text>
           <text data-detail="context" x="180" y="328" className="t-muted" fontSize="12" textAnchor="middle">{"온디바이스 ML 3종 · 앱: 팀원 담당"}</text>
         </g>
         <g id="node-vg-cctv-ppe" data-node-id="vg-cctv-ppe" data-node-label="CCTV + AI · 팀원 담당" data-node-kind="external" data-node-sublabel="안전모 착용 판정 · 엣지" data-node-context="축② 산업안전 플랫폼 — 현장 물증을 만든다" data-owner="teammate" className="archify-node" style={{ "--node-delay": "240ms" } as CSSProperties}>

@@ -16,6 +16,7 @@ import { RepositoryLink } from "@/components/repository-link";
 import { Reveal } from "@/components/reveal";
 import { RoleDetail } from "@/components/role-detail";
 import { VideoPlayer } from "@/components/video-player";
+import { Troubleshooting } from "@/components/troubleshooting";
 
 export default function Home() {
   return <>
@@ -27,6 +28,13 @@ export default function Home() {
       </div>
       <span className="scroll-progress" aria-hidden="true" />
     </header>
+    <nav className="section-dots" aria-label="목차 바로가기" data-section-dots>
+      <ul>{navigation.map((item, index) => <li key={item.href}>
+        <a href={item.href} aria-label={`${item.label} 구간으로 이동`} aria-current={index === 0 ? "location" : undefined}>
+          <span aria-hidden="true" />
+        </a>
+      </li>)}</ul>
+    </nav>
     <main id="본문" tabIndex={-1}>
       <DocumentSection label={sectionLabels.summary} owner="self" hero>
         <h1 id="hero-title">{hero.title}</h1>
@@ -113,6 +121,10 @@ export default function Home() {
         <p className="lead roles-intro">{rolesIntro.description}</p>
         <nav className="role-index" aria-label={rolesIntro.title}><ul>{roles.map((role) => <li key={role.id}><a href={`#역할-${role.id}`}>{role.title}<ArrowIcon down /></a></li>)}</ul></nav>
         {roles.map((role) => <RoleDetail key={role.id} role={role} />)}
+      </DocumentSection>
+
+      <DocumentSection label={sectionLabels.troubleshooting} owner="self">
+        <Troubleshooting />
       </DocumentSection>
 
       <DocumentSection label={sectionLabels.video} owner="team">
