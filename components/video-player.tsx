@@ -2,8 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import { video } from "@/content/media";
-import { PlayIcon } from "./icons";
 import { AttributionTag } from "./attribution-tag";
+import { UiIcon } from "./ui-icon";
 
 export function VideoPlayer() {
   const [playing, setPlaying] = useState(false);
@@ -23,13 +23,13 @@ export function VideoPlayer() {
         ) : (
           <button type="button" className="poster-button" ref={playRef} aria-label={`${video.playLabel} · ${video.duration}`} onClick={() => { setLoaded(false); setPlaying(true); }}>
             <img src={video.poster.src} width={video.poster.width} height={video.poster.height} alt={video.poster.alt} loading="lazy" decoding="async" />
-            <span className="play-control"><PlayIcon /><span>{video.playLabel}<small>{video.duration}</small></span></span>
+            <span className="play-control"><UiIcon name="youtube" /><span>{video.playLabel}<small>{video.duration}</small></span></span>
           </button>
         )}
       </div>
       {!playing && <p className="video-poster-credit small muted" data-owner={video.poster.attribution}>{video.posterLabel} <AttributionTag owner={video.poster.attribution} label={video.poster.attributionLabel} /> {video.poster.caption}</p>}
       <div className="video-controls">
-        <a className="text-link" href={video.youtube} target="_blank" rel="noopener noreferrer">{playing ? video.fallbackLabel : video.directLabel}</a>
+        <a className="text-link social-link" href={video.youtube} target="_blank" rel="noopener noreferrer"><UiIcon name="youtube" />{playing ? video.fallbackLabel : video.directLabel}<UiIcon name="external" /></a>
         {playing && <button type="button" className="text-button" onClick={() => {
           setPlaying(false);
           setLoaded(false);

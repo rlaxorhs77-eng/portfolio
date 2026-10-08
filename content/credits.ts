@@ -30,18 +30,18 @@ export const credits = [
     "id": "21st",
     "category": "21st.dev",
     "files": [
-      "미사용"
+      "도트 메뉴의 시각 참고"
     ],
-    "source": "21st Labs",
-    "sourceUrl": "https://21st.dev",
-    "channel": "미사용 · 다운로드·구독 사용 없음",
-    "received": "해당 없음",
+    "source": "21st.dev / Proximity Sidebar",
+    "sourceUrl": "https://21st.dev/@amitgajare2/components/proximity-sidebar",
+    "channel": "기존 MCP로 검색, 공개 미리보기 참고. 컴포넌트 코드는 수록하지 않음",
+    "received": "2026-10-08",
     "license": "서비스 약관 2026-07-20판",
     "licenseUrl": "https://21st.dev/terms",
-    "notice": "미사용 · 약관 2026-07-20판: 공통 라이선스 없음, 타 플랫폼 복사 시 원 페이지 링크 필수",
-    "changes": "해당 없음",
-    "ai": "미사용. 향후 채택 시 개별 컴포넌트 라이선스와 AI 조건 확인.",
-    "check": "없음: 미사용 확인",
+    "notice": "Proximity Sidebar, Scroll Spy의 시각·상호작용 참고. 직접 구현.",
+    "changes": "기존 도트 CSS 직접 수정",
+    "ai": "외부 컴포넌트 코드 미수록",
+    "check": "MCP 검색 및 공개 페이지 확인",
     "privateSource": false
   },
   {
@@ -557,14 +557,14 @@ export const credits = [
     ],
     "source": "Archify · tt-a1i · Cocoon-AI architecture-diagram-generator 기반",
     "sourceUrl": "",
-    "channel": "제공된 Archify 3차 정적 SVG를 JSX로 변환",
+    "channel": "Archify 도식의 연결 관계를 기준으로 배치와 선을 다시 작성",
     "received": "2026-10-08 제공 파일 확인·사이트 반영",
     "license": "Archify 코드 MIT · 도식 콘텐츠는 팀 VitAlGuard",
     "licenseUrl": "/diagrams/ARCHIFY-LICENSE.txt",
-    "notice": "시스템 구조도 — Archify(MIT, tt-a1i; Cocoon-AI architecture-diagram-generator 기반) 로 생성·사이트 색으로 재스타일",
-    "changes": "정적 JSX 변환 · 좌표·관계 경로 유지 · 사이트 색·Pretendard 상속·12px 글자·담당 테두리·모션 적용 · CCTV 범위를 안전모로 한정",
+    "notice": "Archify 기반 도식의 노드 관계를 유지하고 배치를 재설계했습니다.",
+    "changes": "공통 입력선으로 집계, 좌우 흐름으로 재배치, 화살표 교차 제거, 글자 크기 확대",
     "ai": "생성 도구의 MIT 라이선스와 팀 콘텐츠의 사용 허락 범위는 별개",
-    "check": "제공된 3차 산출물과 로컬 LICENSE 확인 · 원본 수정 없음",
+    "check": "기존 관계 대조, 인라인 및 독립 SVG 동기화",
     "privateSource": false
   },
   {
@@ -575,16 +575,52 @@ export const credits = [
       "public/diagrams/ARCHIFY-LICENSE.txt",
       "public/diagrams/THIRD_PARTY_NOTICES.md"
     ],
-    "source": "Archify 전달 HTML · 원문 라이선스·제3자 고지",
+    "source": "포트폴리오 전용 SVG 뷰어",
     "sourceUrl": "/diagrams/THIRD_PARTY_NOTICES.md",
-    "channel": "제공된 HTML 및 도구의 LICENSE·THIRD_PARTY_NOTICES.md 그대로 복사",
+    "channel": "인라인 SVG와 같은 내보내기에서 생성",
     "received": "2026-10-08 제공 파일 확인·사이트 반영",
-    "license": "MIT · 내장 브랜드 자료는 별도 고지 참조",
+    "license": "자체 뷰어 코드 / 원 구조도 출처 고지 보존",
     "licenseUrl": "/diagrams/ARCHIFY-LICENSE.txt",
-    "notice": "뷰어 HTML: Archify·Cocoon AI MIT 고지 보존. 내장 브랜드 자료는 THIRD_PARTY_NOTICES.md 참조.",
-    "changes": "HTML·LICENSE·THIRD_PARTY_NOTICES.md 바이트 변경 없음 · 영어 조작 UI 및 외부 Google Fonts 링크 유지",
+    "notice": "구조도 확대·축소와 SVG 저장 기능. 원 Archify 라이선스 고지 보존.",
+    "changes": "복잡한 기존 UI를 한국어 뷰어로 교체. 외부 폰트·스크립트 요청 없음",
     "ai": "브랜드 자료의 개별 조건은 THIRD_PARTY_NOTICES.md에 기록; 추가 이용 권한을 부여하지 않음",
-    "check": "로컬 고지 원문 확인 · 외부 요청의 실제 응답은 검사하지 않음",
+    "check": "정적 export와 동일 SVG 확인",
+    "privateSource": false
+  },
+  {
+    "id": "tabler-icons",
+    "category": "Tabler UI 아이콘",
+    "files": [
+      "public/img/icons/ (UI SVG 17종)"
+    ],
+    "source": "Tabler Icons",
+    "sourceUrl": "https://github.com/tabler/tabler-icons",
+    "channel": "공식 저장소 원본 SVG 다운로드",
+    "received": "2026-10-08",
+    "license": "MIT",
+    "licenseUrl": "/licenses/tabler-icons.txt",
+    "notice": "Copyright (c) 2020 Paweł Kuna. MIT 고지를 보존했습니다.",
+    "changes": "원본 경로 유지, CSS mask로 사이트 색 적용",
+    "ai": "원 MIT 라이선스 적용",
+    "check": "다운로드 응답 및 SHA-256 기록",
+    "privateSource": false
+  },
+  {
+    "id": "simple-icons",
+    "category": "기술 스택·YouTube 로고",
+    "files": [
+      "public/img/icons/ (브랜드 SVG 9종)"
+    ],
+    "source": "Simple Icons",
+    "sourceUrl": "https://github.com/simple-icons/simple-icons",
+    "channel": "공식 패키지 v16 CDN SVG 다운로드",
+    "received": "2026-10-08",
+    "license": "CC0 1.0",
+    "licenseUrl": "/licenses/simple-icons.txt",
+    "notice": "브랜드 식별 목적으로 사용하며 각 상표의 권리는 해당 권리자에게 있습니다.",
+    "changes": "원본 경로 유지, CSS mask로 브랜드 색 적용",
+    "ai": "CC0 및 각 상표의 권리는 별개",
+    "check": "다운로드 응답 및 SHA-256 기록",
     "privateSource": false
   }
 ] as const satisfies readonly Credit[];
@@ -599,5 +635,5 @@ export const creditsCopy = {
     "표기"
   ],
   "unused": "스톡 사진 0 · 일러스트(unDraw 등) 0 · Lottie 0 · 디바이스 목업 이미지 0 · Figma 키트 0. 사이트 이미지로 게시한 AI 생성 이미지 0장.",
-  "rights": "이미지·영상·로고는 팀 VitAlGuard 의 자산이며 무단 사용을 금합니다. 코드와 문서 구조는 김태곤."
+  "rights": "프로젝트 이미지·영상·로고는 팀 VitAlGuard의 자산입니다. 외부 아이콘에는 위에 명시한 각 라이선스가 적용됩니다. 포트폴리오 코드와 문서 구조는 김태곤."
 } as const;

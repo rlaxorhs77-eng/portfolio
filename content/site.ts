@@ -10,7 +10,7 @@ export const site = {
   githubLabel: "@rlaxorhs77-eng",
   email: "rlaxorhs77@gmail.com",
   // 사이트 기준일·푸터 연도: TASK_P1_scaffold.md §9 H-2·§6.
-  asOf: "2026-10-07",
+  asOf: "2026-10-08",
   asOfLabel: "내용 기준일",
   copyright: "© 2026 김태곤",
   fontStylesheet: "https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-gov-dynamic-subset.min.css",
@@ -24,15 +24,13 @@ export const attributionLabels = {
 } as const;
 
 export const navigation = [
-  { label: "요약", href: "#요약" },
-  { label: "이력", href: "#이력" },
-  { label: "소개", href: "#소개" },
+  { label: "소개", href: "#요약" },
+  { label: "기술 스택", href: "#기술스택" },
+  { label: "경험", href: "#이력" },
   { label: "프로젝트", href: "#프로젝트" },
-  { label: "역할", href: "#역할" },
-  { label: "해결사례", href: "#문제해결" },
+  { label: "문제 해결", href: "#문제해결" },
   { label: "영상", href: "#영상" },
   { label: "보도", href: "#보도" },
-  { label: "화면", href: "#화면" },
   { label: "연락", href: "#연락" },
 ] as const;
 

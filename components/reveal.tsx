@@ -192,7 +192,7 @@ export function Reveal() {
     const beforePrint = () => {
       printing = true;
       showAll();
-      printExpanded = [...document.querySelectorAll<HTMLDetailsElement>(".troubleshooting-case:not([open])")];
+      printExpanded = [...document.querySelectorAll<HTMLDetailsElement>("main details:not([open])")];
       printExpanded.forEach((entry) => { entry.open = true; });
     };
     const afterPrint = () => {
@@ -204,6 +204,8 @@ export function Reveal() {
     const onHashChange = () => {
       const target = document.getElementById(decodeURIComponent(window.location.hash.slice(1)));
       if (target) {
+        let disclosure: HTMLDetailsElement | null = target.closest<HTMLDetailsElement>("details");
+        while (disclosure) { disclosure.open = true; disclosure = disclosure.parentElement?.closest<HTMLDetailsElement>("details") ?? null; }
         let parent: HTMLElement | null = target.closest<HTMLElement>("[data-reveal]");
         while (parent) { show(parent, true); parent = parent.parentElement?.closest<HTMLElement>("[data-reveal]") ?? null; }
       }

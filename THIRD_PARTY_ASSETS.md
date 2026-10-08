@@ -44,3 +44,11 @@
 스톡 사진 0 · 일러스트(unDraw 등) 0 · Lottie 0 · 디바이스 목업 이미지 0 · Figma 키트 0. 사이트 이미지로 게시한 AI 생성 이미지 0장. YouTube 팀 시연 영상은 기존의 생성 장면 합성 사실을 본문과 크레딧에 표시한다.
 
 Pretendard 및 21st.dev 조건은 2026-10-08 제공된 조사와 작업 지시를 반영했다. 이 작업은 네트워크 조회를 수행하지 않았다. Next.js·React·Tailwind CSS·TypeScript의 라이선스는 기설치 패키지 원문을 대조했다.
+
+## 2026-10-08 P7 갱신
+
+- Tabler Icons: 공식 저장소 SVG 17종, MIT. `public/licenses/tabler-icons.txt`에 고지 보존.
+- Simple Icons v16: 기술 스택 및 YouTube SVG 9종, CC0. `public/licenses/simple-icons.txt`에 원문 보존. 상표는 해당 권리자 소유이며 브랜드 식별에만 사용.
+- 출처·해시: 작업기록/qa/p7/icon-sources.json. 위 초기 '외부 아이콘 세트 미사용' 문구는 P5 시점 기록이며 현재는 신규 두 세트가 추가됨.
+- 21st MCP: Proximity Sidebar / Scroll Spy 검색·공개 미리보기 참고. 원 컴포넌트 소스 코드 복사·구매 없음. https://21st.dev/@amitgajare2/components/proximity-sidebar
+- 구조도: Archify의 노드 관계를 보존하며 공통 입력선과 좌우 열로 재배치. 독립 뷰어는 인라인 SVG에서 생성한 자체 한국어 확대/축소 UI로 교체했고 외부 네트워크 요청 없음. 기존 LICENSE 고지는 남김.

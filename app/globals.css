@@ -170,21 +170,7 @@ summary { cursor: pointer; min-height: 44px; padding-block: 8px; font-size: 16px
    Keep the 1390×740 coordinate system at >=1:1 so every label stays >=12px. */
 .architecture-scroll-hint { margin-bottom: 12px; }
 .architecture-scroll { width: 100%; max-width: 100%; overflow-x: auto; overscroll-behavior-x: contain; border: 1px solid var(--line); border-radius: var(--radius); }
-.architecture-svg { display: block; width: 100%; min-width: 1390px; height: auto; font-family: inherit; }
-.architecture-svg text { font-family: inherit; font-size: 12px; }
-.architecture-svg .archify-static-background, .architecture-svg .c-mask { fill: var(--bg); stroke: none; }
-.architecture-svg .c-grid { fill: none; stroke: var(--line); opacity: .14; }
-.architecture-svg .c-region { fill: none; stroke: var(--line); stroke-width: 1px; stroke-dasharray: 8 4; }
-.architecture-svg .archify-node-shape { fill: var(--bg); stroke: var(--line); stroke-width: 1.5px; stroke-dasharray: none; }
-.architecture-svg [data-owner="self"] > .archify-node-shape { fill: rgba(224,163,74,.10); stroke: var(--accent); }
-.architecture-svg [data-owner="teammate"] > .archify-node-shape { stroke: var(--muted); stroke-dasharray: 6 4; }
-.architecture-svg .t-primary { fill: var(--text); }
-.architecture-svg .t-muted, .architecture-svg .t-cloud { fill: var(--muted); }
-.architecture-svg .semantic-sigil { fill: none; stroke: var(--muted); stroke-width: 1.35; stroke-linecap: round; stroke-linejoin: round; pointer-events: none; }
-.architecture-svg .semantic-sigil > * { vector-effect: non-scaling-stroke; }
-.architecture-svg .semantic-sigil .sigil-fill { fill: var(--muted); stroke: none; }
-.architecture-svg .a-default { fill: none; stroke: var(--muted); stroke-dasharray: none; stroke-dashoffset: 0; }
-.architecture-svg .m-default { fill: var(--muted); }
+.architecture-svg { display: block; width: 100%; min-width: 1100px; height: auto; font-family: inherit; }
 .architecture-scope { margin-top: 12px; }
 .architecture-viewer { display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px 12px; }
 .architecture-legend { margin-top: 20px; font-size: 14px; line-height: 1.7; color: var(--muted); }

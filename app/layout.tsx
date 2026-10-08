@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { site, SITE_URL } from "@/content/site";
 import "./globals.css";
+import "./portfolio.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
