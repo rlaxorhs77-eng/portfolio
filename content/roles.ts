@@ -1,7 +1,8 @@
 import { assets } from "./assets";
+import { commitCopy, dashboardContribution, dbCutover } from "./commits";
 import type { Role } from "./types";
 
-// 담당 범위: content-inventory.md:357; 조직 README.md:52.
+// 담당 범위: TASK_P5c_commits.md §0–2와 commit-evidence.json 우선; 기존 사실은 content-inventory.md:357.
 // DB 수치: 2026-09-28 카탈로그 실측, 파티션 자식·내부 생성 트리거 제외. 신 DB 라이브 연결 보류.
 // 출처: content-inventory.md:250-251,261; 신규_스키마_ERD.md:6-7,21-29.
 // DB·하드웨어·ML 기간은 전체 프로젝트 기간(TASK_P2_restyle.md §3), 개별 역할의 착수·종료일이 아니다.
@@ -21,7 +22,8 @@ export const roles = [
     id: "db",
     title: "DB 설계",
     summary: "데이터를 쌓는 구조에서, 근거를 지키는 구조로.",
-    scope: "담당 범위 — 신규 스키마·RLS·트리거·마이그레이션 설계와 외부 감사 대응 / 팀원 담당: 대시보드·API 구현",
+    scope: `담당 범위 — 신규 스키마·RLS·트리거·마이그레이션 설계와 외부 감사 대응. ${dashboardContribution.statement}`,
+    commitEvidence: commitCopy.roles.db,
     owned: "신규 스키마 전체 설계, 법 요건 반영, 외부 감사 대응을 맡았습니다. 조직·현장·장치·증빙을 관계로 연결하고, 수집 항목과 동의 구조를 함께 정리했습니다.",
     period: "프로젝트 기간 2026.06–2026.10",
     tags: ["PostgreSQL", "SQL", "RLS", "트리거", "AES-256-GCM"],
@@ -44,6 +46,7 @@ export const roles = [
         result: "재현된 결함 12건을 수정했고, 신규 스키마의 마이그레이션 101개를 확인했습니다.",
         // 출처: content-inventory.md:250-251,256,261
       },
+      dbCutover,
     ],
     paths: ["db/erd-vitalguard2/", "db/audit/", "db/integrated/"],
     images: [assets.dbRelations, assets.dbDefense],
@@ -53,7 +56,8 @@ export const roles = [
     id: "hardware",
     title: "현장 하드웨어",
     summary: "GasPod · AED-alert",
-    scope: "담당 범위 — GasPod 펌웨어·OTA·배터리 곡선·케이스와 AED-alert 알람 / 팀원 담당: 관제 웹·서버 구현",
+    scope: `담당 범위 — GasPod 펌웨어·OTA·배터리 곡선·케이스와 AED-alert 알람. ${dashboardContribution.statement}`,
+    commitEvidence: commitCopy.roles.hardware,
     owned: "GasPod의 ESP32 펌웨어, 배터리 곡선 실측, 배터리 단독 OTA 실증, 케이스 설계와 AED-alert의 라즈베리파이 알람을 맡았습니다.",
     period: "프로젝트 기간 2026.06–2026.10",
     tags: ["ESP32-S3", "OTA", "Raspberry Pi", "GPIO", "systemd"],
@@ -86,6 +90,7 @@ export const roles = [
     title: "담당관 태블릿 앱",
     summary: "Compose 재작성의 요구정의와 검수.",
     scope: "담당 범위 — 요구정의·UI/UX 계획·단계별 검수·실기기 검증",
+    commitEvidence: commitCopy.roles.tablet,
     owned: "Flutter에서 Kotlin·Jetpack Compose로 재작성하는 과정의 요구정의, UI/UX 계획, 단계별 검수, 실기기 검증을 맡았습니다.",
     period: "2026.09 · 재작성·검수",
     tags: ["Kotlin", "Jetpack Compose", "UI/UX", "JVM 테스트"],
@@ -118,6 +123,7 @@ export const roles = [
     title: "워치 ML",
     summary: "낙상 후보를 거르고, 무반응을 확인합니다.",
     scope: "담당 범위 — 낙상 모델 학습·검증과 판정 모듈 제작·관리 / 팀원 담당: 웨어러블 수집·앱 화면·앱 통합",
+    commitEvidence: commitCopy.roles.watchMl,
     owned: "낙상 판정을 위한 work_veto, impact, recovery 모델의 학습·검증과 모듈 제작·관리를 맡았습니다.",
     period: "프로젝트 기간 2026.06–2026.10",
     tags: ["Swift", "Core ML", "Kotlin", "ONNX", "LOSO"],

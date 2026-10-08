@@ -1,4 +1,5 @@
 import { assets } from "./assets";
+import { dashboardContribution } from "./commits";
 import type { GalleryGroup } from "./types";
 
 // 팀 공동 영상: TASK_P3_attribution.md §1. 길이·구성·합성 방식: content-inventory.md:294-297.
@@ -28,12 +29,12 @@ export const video = {
   scenes: [
     { title: "오프닝", description: "방패와 심전도 로고", contribution: null },
     { title: "아버지의 귀가", description: "현장을 나서 가족에게 돌아가는 일상", contribution: null },
-    { title: "관제 플랫폼 허브", description: "팀원 담당 관제 웹에서 연결되는 서비스", contribution: null },
+    { title: "관제 플랫폼 허브", description: "팀원이 구현한 관제 화면에서 연결되는 서비스", contribution: null },
     { title: "AED-alert", description: "낙상 감지에서 경광등과 제세동기 위치 유도로", contribution: "낙상 ML·AED-alert" },
     { title: "GasPod", description: "가스 위험 단계 전환과 대피 흐름", contribution: "GasPod" },
     { title: "워치 앱", description: "팀원 담당 앱에서 확인하는 생체 신호", contribution: null },
     { title: "태블릿 앱", description: "워크 캘린더, 촬영, 전송과 펜 주석", contribution: "태블릿 요구정의·검수" },
-    { title: "관제 웹", description: "팀원 담당 웹의 AED·가스·작업자 모니터링과 태블릿 홈", contribution: "태블릿 홈 검수" },
+    { title: "관제 웹", description: "팀원이 구현한 관제 화면의 AED·가스·작업자 모니터링과 태블릿 홈", contribution: "태블릿 홈 검수" },
     { title: "다섯 개의 귀가", description: "가족의 품으로 돌아가는 장면", contribution: null },
     { title: "엔딩", description: "작업자가 안전하게 집으로 돌아가는 길", contribution: null },
   ],
@@ -45,7 +46,7 @@ export const gallery = {
   // 캡처의 표시값은 원본 화면의 데모 값이다. 포트폴리오 성능 수치로 추출하지 않는다.
   groups: [
     // 신 DB 운영 연결은 보류(content-inventory.md:261). 표시 데이터가 내 신규 DB에서 왔다는 주장은 하지 않는다.
-    { id: "web", title: "관제 웹", attribution: "teammate", scope: "내 DB 설계·낙상 판정 모듈의 연동 대상", description: "실서비스 화면 · 식별 정보 마스킹본", images: [assets.webOverview, assets.webWorkers, assets.webGas, assets.webAed] },
+    { id: "web", title: "관제 웹·서버", attribution: "team", scope: dashboardContribution.scope, description: "실서비스 화면 · 식별 정보 마스킹본", images: [assets.webOverview, assets.webWorkers, assets.webGas, assets.webAed] },
     { id: "tablet", title: "태블릿", attribution: "self", scope: "요구정의·검수", description: "실서비스 화면 · 현장 기록과 전송 흐름", images: [assets.tabletAlerts, assets.tabletCalendar, assets.tabletTransfers, assets.tabletHelp] },
     { id: "watch", title: "워치", attribution: "teammate", scope: "내 담당은 ML 판정 로직 / 앱 화면은 팀원 담당", description: "앱 사양 기준 화면(일부 시안 포함)", compact: true, images: [assets.watchNormal, assets.watchHeat, assets.watchOxygen, assets.watchTrend] },
     { id: "hardware", title: "장치", attribution: "self", scope: "", description: "제작한 실물 · GasPod는 교육용 프로토타입", images: [assets.gaspod, assets.aed] },

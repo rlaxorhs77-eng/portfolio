@@ -30,6 +30,7 @@ export const navigation = [
   { label: "프로젝트", href: "#프로젝트" },
   { label: "역할", href: "#역할" },
   { label: "영상", href: "#영상" },
+  { label: "보도", href: "#보도" },
   { label: "화면", href: "#화면" },
   { label: "연락", href: "#연락" },
 ] as const;
@@ -41,6 +42,7 @@ export const sectionLabels = {
   project: { english: "PROJECT", korean: "프로젝트" },
   roles: { english: "CONTRIBUTION", korean: "역할" },
   video: { english: "DEMONSTRATION", korean: "영상" },
+  press: { english: "PRESS", korean: "보도" },
   gallery: { english: "GALLERY", korean: "화면" },
   contact: { english: "CONTACT", korean: "연락" },
 } as const;

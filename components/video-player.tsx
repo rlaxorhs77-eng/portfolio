@@ -27,7 +27,7 @@ export function VideoPlayer() {
           </button>
         )}
       </div>
-      {!playing && <p className="video-poster-credit small muted" data-owner={video.poster.attribution}>{video.posterLabel} <AttributionTag owner={video.poster.attribution} /> {video.poster.caption}</p>}
+      {!playing && <p className="video-poster-credit small muted" data-owner={video.poster.attribution}>{video.posterLabel} <AttributionTag owner={video.poster.attribution} label={video.poster.attributionLabel} /> {video.poster.caption}</p>}
       <div className="video-controls">
         <a className="text-link" href={video.youtube} target="_blank" rel="noopener noreferrer">{playing ? video.fallbackLabel : video.directLabel}</a>
         {playing && <button type="button" className="text-button" onClick={() => {

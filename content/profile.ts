@@ -38,6 +38,8 @@ export const resume = {
   field: "IoT · 임베디드 풀스택",
   websitesLabel: "웹 페이지",
   githubLabel: "GitHub 프로필",
+  // TASK_P5_polish.md §4-5: 개인 포트폴리오 공개 저장소. 조직 저장소 가드와 별개.
+  portfolioSource: { label: "포트폴리오 소스", href: "https://github.com/rlaxorhs77-eng/portfolio" },
   videoLabel: "YouTube 팀 시연 영상",
   skillsLabel: "보유 기술",
   skills: ["PostgreSQL", "RLS", "ESP32", "Kotlin/Compose", "CoreML", "ONNX"],

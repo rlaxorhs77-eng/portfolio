@@ -8,6 +8,7 @@ export function RoleDetail({ role }: { role: Role }) {
     <header className="role-heading">
       <h3 id={`role-${role.id}`} className="attributed-heading">{role.title}<AttributionTag owner="self" /></h3>
       <p className="role-scope">{role.scope}</p>
+      <p className="role-commit-evidence">{role.commitEvidence}</p>
       <p className="role-summary">{role.summary}</p>
       <p className="small muted">{role.period}</p>
       <p className="tags">{role.tags.map((tag) => <span key={tag}>#{tag}</span>)}</p>

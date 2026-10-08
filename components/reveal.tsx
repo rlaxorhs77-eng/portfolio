@@ -13,7 +13,12 @@ export function Reveal() {
     let disposed = false;
     let printing = false;
     let scrollFrame = 0;
+    const countDuration = 900;
+    const safetyMargin = 300;
     const countFrames = new Map<HTMLElement, number>();
+    const countTimers = new Map<HTMLElement, ReturnType<typeof setTimeout>>();
+    const revealTimers = new Map<HTMLElement, ReturnType<typeof setTimeout>>();
+    const deferred = new Set<HTMLElement>();
     const counted = new Set<HTMLElement>();
     const counters = Array.from(document.querySelectorAll<HTMLElement>("[data-count]"));
     const canObserve = "IntersectionObserver" in window;
@@ -29,13 +34,22 @@ export function Reveal() {
     const elements = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
     const motionAllowed = () => !preference.matches && !printing;
 
-    const finishCounts = () => {
-      countFrames.forEach((frame) => cancelAnimationFrame(frame));
-      countFrames.clear();
-      counters.forEach((counter) => { counter.textContent = counter.dataset.count ?? ""; counted.add(counter); });
+    const finishCount = (counter: HTMLElement) => {
+      const frame = countFrames.get(counter);
+      if (frame !== undefined) cancelAnimationFrame(frame);
+      countFrames.delete(counter);
+      const timer = countTimers.get(counter);
+      if (timer !== undefined) clearTimeout(timer);
+      countTimers.delete(counter);
+      counter.textContent = counter.dataset.count ?? "";
+      counted.add(counter);
     };
+    const finishCounts = () => counters.forEach(finishCount);
     const count = (counter: HTMLElement, delay = 0) => {
       if (counted.has(counter)) return;
+      // A background tab keeps the server's final value, without consuming its
+      // one entrance. visibilitychange re-observes it; only the IO starts it.
+      if (document.visibilityState !== "visible") return;
       counted.add(counter);
       const final = counter.dataset.count ?? "";
       const parts = /^(\d[\d,]*)(.*)$/.exec(final);
@@ -44,36 +58,48 @@ export function Reveal() {
       // Decimal / unit / denominator are untouched; 0.971 therefore stays 0.971.
       if (target === 0) return;
       const start = performance.now() + delay;
+      // Independent of rAF: even a suspended frame clock cannot leave 0 behind.
+      countTimers.set(counter, setTimeout(() => finishCount(counter), delay + countDuration + safetyMargin));
       counter.textContent = `0${parts[2]}`;
       const tick = (now: number) => {
-        if (!motionAllowed() || disposed) { counter.textContent = final; countFrames.delete(counter); return; }
-        const progress = Math.min(1, Math.max(0, (now - start) / 900));
+        if (!countFrames.has(counter)) return;
+        if (!motionAllowed() || disposed || document.visibilityState !== "visible") { finishCount(counter); return; }
+        const progress = Math.min(1, Math.max(0, (now - start) / countDuration));
         const value = Math.floor(target * (1 - Math.pow(1 - progress, 3)));
         counter.textContent = `${parts[1].includes(",") ? value.toLocaleString("en-US") : value}${parts[2]}`;
         if (progress < 1) countFrames.set(counter, requestAnimationFrame(tick));
-        else { counter.textContent = final; countFrames.delete(counter); }
+        else finishCount(counter);
       };
       countFrames.set(counter, requestAnimationFrame(tick));
     };
     let observer: IntersectionObserver | undefined;
+    const settleReveal = (element: HTMLElement) => {
+      const timer = revealTimers.get(element);
+      if (timer !== undefined) clearTimeout(timer);
+      revealTimers.delete(element);
+      element.classList.add("reveal-instant");
+    };
     const show = (element: HTMLElement, immediate = false) => {
+      if (!immediate && document.visibilityState !== "visible") { deferred.add(element); return; }
+      deferred.delete(element);
       element.classList.remove("reveal-pending");
       element.classList.add("reveal-shown");
-      if (immediate) element.classList.add("reveal-instant");
+      if (immediate) settleReveal(element);
       observer?.unobserve(element);
       const delay = immediate ? 0 : parseFloat(element.style.getPropertyValue("--reveal-delay")) || 0;
+      // Longest CSS sequence: draw 600ms + border 300ms. Waiting elements are
+      // readable; only an intersecting element receives an entrance animation.
+      if (!immediate && !element.classList.contains("reveal-instant") && !revealTimers.has(element)) {
+        revealTimers.set(element, setTimeout(() => settleReveal(element), delay + 900 + safetyMargin));
+      }
       element.querySelectorAll<HTMLElement>("[data-count]").forEach((counter) => {
-        if (immediate) {
-          const frame = countFrames.get(counter);
-          if (frame !== undefined) cancelAnimationFrame(frame);
-          countFrames.delete(counter);
-          counter.textContent = counter.dataset.count ?? "";
-          counted.add(counter);
-        } else if (!counter.closest(".reveal-pending")) count(counter, delay);
+        if (immediate) finishCount(counter);
+        else if (!counter.closest(".reveal-pending")) count(counter, delay);
       });
     };
     const showAll = () => {
       observer?.disconnect();
+      deferred.clear();
       root.classList.remove("motion-enabled");
       elements.forEach((element) => show(element, true));
       finishCounts();
@@ -89,6 +115,18 @@ export function Reveal() {
         else { element.classList.add("reveal-pending"); observer?.observe(element); }
       });
     } else showAll();
+
+    const onVisibilityChange = () => {
+      if (document.visibilityState !== "visible") {
+        Array.from(countFrames.keys()).forEach(finishCount);
+        Array.from(revealTimers.keys()).forEach(settleReveal);
+        return;
+      }
+      // Re-observation requests a fresh intersection result, so an element that
+      // left the viewport while hidden never starts a count on visibility alone.
+      deferred.forEach((element) => { observer?.unobserve(element); observer?.observe(element); });
+      deferred.clear();
+    };
 
     const nav = document.querySelector<HTMLElement>("[data-section-nav]");
     const links = Array.from(nav?.querySelectorAll<HTMLAnchorElement>("a[href^='#']") ?? []);
@@ -163,6 +201,7 @@ export function Reveal() {
     void document.fonts?.ready.then(() => { if (!disposed) onResize(); });
     preference.addEventListener("change", onPreferenceChange);
     document.addEventListener("focusin", onFocus);
+    document.addEventListener("visibilitychange", onVisibilityChange);
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onResize);
     window.addEventListener("hashchange", onHashChange);
@@ -182,6 +221,7 @@ export function Reveal() {
       progressBar?.removeAttribute("style");
       preference.removeEventListener("change", onPreferenceChange);
       document.removeEventListener("focusin", onFocus);
+      document.removeEventListener("visibilitychange", onVisibilityChange);
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onResize);
       window.removeEventListener("hashchange", onHashChange);

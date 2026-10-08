@@ -7,6 +7,7 @@ export type ImageAsset = Readonly<{
   alt: string;
   caption: string;
   attribution: Attribution;
+  attributionLabel?: string;
 }>;
 
 export type Metric = Readonly<{
@@ -19,6 +20,7 @@ export type Role = Readonly<{
   title: string;
   summary: string;
   scope: string;
+  commitEvidence: string;
   owned: string;
   period: string;
   tags: readonly string[];

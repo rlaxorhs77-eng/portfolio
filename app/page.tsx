@@ -1,4 +1,5 @@
 import { assets } from "@/content/assets";
+import { commitCopy, dashboardContribution } from "@/content/commits";
 import { hero, project, timeline } from "@/content/project";
 import { roles, rolesIntro } from "@/content/roles";
 import { gallery, video } from "@/content/media";
@@ -10,6 +11,7 @@ import { DocumentSection } from "@/components/document-section";
 import { ArrowIcon } from "@/components/icons";
 import { ImageGallery } from "@/components/image-gallery";
 import { Metrics } from "@/components/metrics";
+import { PressCoverage } from "@/components/press-coverage";
 import { RepositoryLink } from "@/components/repository-link";
 import { Reveal } from "@/components/reveal";
 import { RoleDetail } from "@/components/role-detail";
@@ -36,7 +38,7 @@ export default function Home() {
         </div>
         <div className="hero-awards" data-owner="team">
           <AttributionTag owner="team" />
-          <ul className="hero-badges">{hero.badges.map((badge) => <li key={badge.title}><strong>{badge.title}</strong><time dateTime={badge.dateTime}>{badge.date}</time></li>)}</ul>
+          <ImageGallery images={hero.awards} className="award-gallery" />
         </div>
         <div className="cta-row">
           <a href="#영상" className="button button-primary">{hero.videoCta}<ArrowIcon down /></a>
@@ -53,14 +55,17 @@ export default function Home() {
           </dd></div>)}
           <div><dt>{resume.websitesLabel}</dt><dd className="resume-websites">
             <a className="text-link" href={site.github} target="_blank" rel="noopener noreferrer">{resume.githubLabel}<ArrowIcon /></a>
+            <a className="text-link" href={resume.portfolioSource.href} target="_blank" rel="noopener noreferrer">{resume.portfolioSource.label}<ArrowIcon /></a>
             <a className="text-link" href={video.youtube} target="_blank" rel="noopener noreferrer" data-owner="team">{resume.videoLabel}<ArrowIcon /></a>
             <span data-owner="team"><RepositoryLink /></span>
+            <p data-owner="self">{commitCopy.resume}</p>
           </dd></div>
           <div><dt>{resume.skillsLabel}</dt><dd>
             <p className="tags">{resume.skills.map((tag) => <span key={tag}>#{tag}</span>)}</p>
             <p className="small muted">{resume.skillNote}</p>
-            <details className="integration-details" data-owner="teammate"><summary><AttributionTag owner="teammate" /> {resume.integrationLabel}</summary>
+            <details className="integration-details" data-owner="team"><summary><AttributionTag owner="team" /> {resume.integrationLabel}</summary>
               <p className="tags">{resume.integrationTags.map((tag) => <span key={tag}>#{tag}</span>)}</p>
+              <p className="small muted">{dashboardContribution.statement}</p>
               <p className="small muted">{resume.platformNote}</p>
             </details>
           </dd></div>
@@ -85,14 +90,21 @@ export default function Home() {
           <blockquote className="problem"><p>{project.quote}</p><cite>{project.quoteSource}</cite></blockquote>
         </div>
         <Architecture />
-        <table className="data-table achievements" data-reveal>
+        <table className="data-table achievements stacked-table" role="table" data-reveal>
           <caption>{ui.achievements}</caption>
           <thead><tr><th scope="col">{ui.achievementCategory}</th><th scope="col">{ui.achievementResult}</th><th scope="col">{ui.achievementScope}</th></tr></thead>
-          <tbody>{project.achievements.map((entry) => <tr key={entry.category} data-owner={entry.attribution}><th scope="row">{entry.category}</th><td>{entry.result}</td><td><AttributionTag owner={entry.attribution} label={entry.includesSelf ? ui.includesSelf : undefined} /><p>{entry.scope}</p></td></tr>)}</tbody>
+          <tbody>{project.achievements.map((entry) => <tr key={entry.category} data-owner={entry.attribution}>
+            <th scope="row"><span className="mobile-cell-label" aria-hidden="true">{ui.achievementCategory}</span>{entry.category}</th>
+            <td><span className="mobile-cell-label" aria-hidden="true">{ui.achievementResult}</span>{entry.result}{"evidence" in entry && <ImageGallery images={[entry.evidence]} className="award-evidence" compactCaption />}</td>
+            <td><span className="mobile-cell-label" aria-hidden="true">{ui.achievementScope}</span><AttributionTag owner={entry.attribution} label={entry.includesSelf ? ui.includesSelf : undefined} /><p>{entry.scope}</p></td>
+          </tr>)}</tbody>
         </table>
         <div className="project-history" id="타임라인">
           <h4>{timeline.title} <span className="muted">{timeline.year}</span></h4>
-          <p className="timeline-inline">{timeline.entries.map((entry, index) => <span key={entry.date} data-owner={entry.attribution}><AttributionTag owner={entry.attribution} /> <strong>{entry.date}</strong> {entry.text}{entry.scope && <> · <span className="timeline-scope">{entry.scope}</span></>}{index < timeline.entries.length - 1 && <span className="timeline-separator" aria-hidden="true"> / </span>}</span>)}</p>
+          <ol className="timeline-list">{timeline.entries.map((entry) => <li key={entry.date} data-owner={entry.attribution}>
+            <div className="timeline-date"><strong>{entry.date}</strong><AttributionTag owner={entry.attribution} /></div>
+            <div><p>{entry.text}</p>{entry.scope && <p className="timeline-scope">{entry.scope}</p>}</div>
+          </li>)}</ol>
         </div>
         <div className="repo-status"><RepositoryLink /></div>
       </DocumentSection>
@@ -107,11 +119,20 @@ export default function Home() {
         <div className="content-heading" data-reveal><h3 className="attributed-heading">{video.title}<AttributionTag owner="team" label={video.attributionLabel} /></h3><p>{video.description}</p></div>
         <VideoPlayer />
         <div className="video-secondary"><a className="text-link" href={video.sloganUrl} target="_blank" rel="noopener noreferrer">{video.sloganLabel}</a><RepositoryLink path={video.releasePath} label={ui.releases} release /></div>
-        <table className="data-table scenes">
+        <table className="data-table scenes stacked-table" role="table">
           <caption>{video.scenesTitle}<span className="table-key">{video.contributionLegend}</span></caption>
           <thead><tr><th scope="col">{ui.sceneNumber}</th><th scope="col">{ui.sceneTitle}</th><th scope="col">{ui.sceneDescription}</th><th scope="col">{ui.sceneContribution}</th></tr></thead>
-          <tbody>{video.scenes.map((scene, index) => <tr key={scene.title}><td>{String(index + 1).padStart(2, "0")}</td><th scope="row">{scene.title}</th><td>{scene.description}</td><td className="scene-contribution">{scene.contribution ? <span data-owner="self"><span className="contribution-mark" aria-hidden="true">●</span><span>{scene.contribution}</span><span className="sr-only"> · {ui.includesSelf}</span></span> : <span aria-label={ui.sceneNotIncluded}>—</span>}</td></tr>)}</tbody>
+          <tbody>{video.scenes.map((scene, index) => <tr key={scene.title}>
+            <td><span className="mobile-cell-label" aria-hidden="true">{ui.sceneNumber}</span>{String(index + 1).padStart(2, "0")}</td>
+            <th scope="row"><span className="mobile-cell-label" aria-hidden="true">{ui.sceneTitle}</span>{scene.title}</th>
+            <td><span className="mobile-cell-label" aria-hidden="true">{ui.sceneDescription}</span>{scene.description}</td>
+            <td className="scene-contribution"><span className="mobile-cell-label" aria-hidden="true">{ui.sceneContribution}</span>{scene.contribution ? <span data-owner="self"><span className="contribution-mark" aria-hidden="true">●</span><span>{scene.contribution}</span><span className="sr-only"> · {ui.includesSelf}</span></span> : <span aria-label={ui.sceneNotIncluded}>—</span>}</td>
+          </tr>)}</tbody>
         </table>
+      </DocumentSection>
+
+      <DocumentSection label={sectionLabels.press} owner="team">
+        <PressCoverage />
       </DocumentSection>
 
       <DocumentSection label={sectionLabels.gallery}>

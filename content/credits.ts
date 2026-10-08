@@ -1,4 +1,4 @@
-// P4 source ledger. Private source URLs are records, never public hrefs while
+// P4/P5/P5b source ledger. Private source URLs are records, never public hrefs while
 // ORG_REPO_PUBLIC is false. Dates distinguish local verification from acquisition.
 export type Credit = Readonly<{
   id: string; category: string; files: readonly string[]; source: string;
@@ -354,36 +354,36 @@ export const credits = [
     "id": "grand-prize",
     "category": "수상 증빙(팀 자산·마스킹본)",
     "files": [
-      "awards/2026-공공조달데이터AI-창업경진대회-대상.jpg (미게시)"
+      "public/img/awards/grand-prize.webp"
     ],
     "source": "팀 VitAlGuard · awards/2026-공공조달데이터AI-창업경진대회-대상.jpg",
     "sourceUrl": "https://github.com/VitAlGuard-jodal/vitalguard-jodalcheong/blob/main/awards/2026-공공조달데이터AI-창업경진대회-대상.jpg",
-    "channel": "읽기 전용 조직 저장소 원본 육안 확인",
-    "received": "2026-10-08 확인",
+    "channel": "팀 보관 마스킹 원본 · 포트폴리오 사용 허락",
+    "received": "2026-10-08 로컬 확인·사이트 반영 · 최초 수령일 확인 필요",
     "license": "팀 VitAlGuard 자산 · 무단 사용 금지",
     "licenseUrl": "",
-    "notice": "팀원 성명 마스킹은 확인했으나 타인 성명이 남아 미게시",
-    "changes": "P4 제외 조건 적용. 신규 변환·크롭·추가 마스킹 없음",
+    "notice": "팀 VitAlGuard · 팀원 성명 마스킹 대상 상장 · 포트폴리오 사용 허락",
+    "changes": "WebP q80 변환 · 긴 변 ≤1200px · 메타데이터 제거 · 원본 마스킹 유지 · 크롭·추가 마스킹 없음",
     "ai": "팀 허락 범위에 AI 학습·데이터셋 이용은 포함되지 않음",
-    "check": "확인 필요: 공개 제외 요소가 없는 새 마스킹본·재배포 범위",
+    "check": "확인 필요: 최초 수령일·원본 공개 및 재배포 범위",
     "privateSource": true
   },
   {
     "id": "finalist-order",
     "category": "수상 증빙(팀 자산·마스킹본)",
     "files": [
-      "awards/2026-범정부-공공데이터-창업경진대회-통합본선-발표순서-A09.png (미게시)"
+      "public/img/awards/finalist-order.webp"
     ],
     "source": "팀 VitAlGuard · awards/2026-범정부-공공데이터-창업경진대회-통합본선-발표순서-A09.png",
     "sourceUrl": "https://github.com/VitAlGuard-jodal/vitalguard-jodalcheong/blob/main/awards/2026-범정부-공공데이터-창업경진대회-통합본선-발표순서-A09.png",
-    "channel": "읽기 전용 조직 저장소 원본 육안 확인",
-    "received": "2026-10-08 확인",
+    "channel": "팀 보관 마스킹 원본 · 포트폴리오 사용 허락",
+    "received": "2026-10-08 로컬 확인·사이트 반영 · 최초 수령일 확인 필요",
     "license": "팀 VitAlGuard 자산 · 무단 사용 금지",
     "licenseUrl": "",
-    "notice": "타 팀·개인 명칭 마스킹은 확인했으나 금지 검사 대상 지명이 남아 미게시",
-    "changes": "P4 제외 조건 적용. 신규 변환·크롭·추가 마스킹 없음",
+    "notice": "팀 VitAlGuard · 타 팀명 마스킹 발표순서표 · 통합본선 발표 참가(왕중왕전 미진출)",
+    "changes": "WebP q80 변환 · 긴 변 ≤1200px · 메타데이터 제거 · 원본 마스킹 유지 · 크롭·추가 마스킹 없음",
     "ai": "팀 허락 범위에 AI 학습·데이터셋 이용은 포함되지 않음",
-    "check": "확인 필요: 공개 제외 요소가 없는 새 마스킹본·재배포 범위",
+    "check": "확인 필요: 최초 수령일·원본 공개 및 재배포 범위",
     "privateSource": true
   },
   {
@@ -399,7 +399,7 @@ export const credits = [
     "license": "자체 도식 · 무단 사용 금지",
     "licenseUrl": "",
     "notice": "내 담당 · 신규 DB 설계 설명",
-    "changes": "P3에서 출처 안내 삭제 및 설명 정리. P4 내용 변경 없음",
+    "changes": "P3 설명 정리. P5 흰 배경·사이트 6색·2px 모서리·Pretendard 우선 스택으로 변경 · 문구·관계·연결선 경로 유지",
     "ai": "팀 허락 범위에 AI 학습·데이터셋 이용은 포함되지 않음",
     "check": "확인 필요: 자체 산출물의 공개·재배포 허락 범위",
     "privateSource": false
@@ -417,7 +417,7 @@ export const credits = [
     "license": "자체 도식 · 무단 사용 금지",
     "licenseUrl": "",
     "notice": "내 담당 · 신규 DB 설계 설명",
-    "changes": "P3에서 출처 안내 삭제 및 설명 정리. P4 내용 변경 없음",
+    "changes": "P3 설명 정리. P5 흰 배경·사이트 6색·2px 모서리·Pretendard 우선 스택으로 변경 · 문구·관계·연결선 경로 유지",
     "ai": "팀 허락 범위에 AI 학습·데이터셋 이용은 포함되지 않음",
     "check": "확인 필요: 자체 산출물의 공개·재배포 허락 범위",
     "privateSource": false
@@ -546,6 +546,45 @@ export const credits = [
     "changes": "수정 없음",
     "ai": "로컬 라이선스에 AI 용도만을 별도로 제한하는 조항은 확인되지 않음",
     "check": "확인 필요: 최초 설치·수령일. 라이선스는 로컬 원문 확인",
+    "privateSource": false
+  },
+  {
+    "id": "archify-diagram",
+    "category": "시스템 구조도",
+    "files": [
+      "components/architecture-svg.tsx",
+      "components/architecture.tsx"
+    ],
+    "source": "Archify · tt-a1i · Cocoon-AI architecture-diagram-generator 기반",
+    "sourceUrl": "",
+    "channel": "제공된 Archify 3차 정적 SVG를 JSX로 변환",
+    "received": "2026-10-08 제공 파일 확인·사이트 반영",
+    "license": "Archify 코드 MIT · 도식 콘텐츠는 팀 VitAlGuard",
+    "licenseUrl": "/diagrams/ARCHIFY-LICENSE.txt",
+    "notice": "시스템 구조도 — Archify(MIT, tt-a1i; Cocoon-AI architecture-diagram-generator 기반) 로 생성·사이트 색으로 재스타일",
+    "changes": "정적 JSX 변환 · 좌표·관계 경로 유지 · 사이트 색·Pretendard 상속·12px 글자·담당 테두리·모션 적용 · CCTV 범위를 안전모로 한정",
+    "ai": "생성 도구의 MIT 라이선스와 팀 콘텐츠의 사용 허락 범위는 별개",
+    "check": "제공된 3차 산출물과 로컬 LICENSE 확인 · 원본 수정 없음",
+    "privateSource": false
+  },
+  {
+    "id": "archify-viewer",
+    "category": "구조도 인터랙티브 뷰어",
+    "files": [
+      "public/diagrams/vitalguard-architecture.html",
+      "public/diagrams/ARCHIFY-LICENSE.txt",
+      "public/diagrams/THIRD_PARTY_NOTICES.md"
+    ],
+    "source": "Archify 전달 HTML · 원문 라이선스·제3자 고지",
+    "sourceUrl": "/diagrams/THIRD_PARTY_NOTICES.md",
+    "channel": "제공된 HTML 및 도구의 LICENSE·THIRD_PARTY_NOTICES.md 그대로 복사",
+    "received": "2026-10-08 제공 파일 확인·사이트 반영",
+    "license": "MIT · 내장 브랜드 자료는 별도 고지 참조",
+    "licenseUrl": "/diagrams/ARCHIFY-LICENSE.txt",
+    "notice": "뷰어 HTML: Archify·Cocoon AI MIT 고지 보존. 내장 브랜드 자료는 THIRD_PARTY_NOTICES.md 참조.",
+    "changes": "HTML·LICENSE·THIRD_PARTY_NOTICES.md 바이트 변경 없음 · 영어 조작 UI 및 외부 Google Fonts 링크 유지",
+    "ai": "브랜드 자료의 개별 조건은 THIRD_PARTY_NOTICES.md에 기록; 추가 이용 권한을 부여하지 않음",
+    "check": "로컬 고지 원문 확인 · 외부 요청의 실제 응답은 검사하지 않음",
     "privateSource": false
   }
 ] as const satisfies readonly Credit[];

@@ -6,7 +6,7 @@ import { attributionLabels, ui } from "@/content/site";
 import { ExpandIcon } from "./icons";
 import { AttributionTag } from "./attribution-tag";
 
-export function ImageGallery({ images, compact = false, className = "" }: { images: readonly ImageAsset[]; compact?: boolean; className?: string }) {
+export function ImageGallery({ images, compact = false, compactCaption = false, className = "" }: { images: readonly ImageAsset[]; compact?: boolean; compactCaption?: boolean; className?: string }) {
   const [selected, setSelected] = useState<ImageAsset | null>(null);
   const dialogRef = useRef<HTMLDialogElement>(null);
   const triggerRef = useRef<HTMLAnchorElement | null>(null);
@@ -40,19 +40,36 @@ export function ImageGallery({ images, compact = false, className = "" }: { imag
 
   useEffect(() => {
     const images = Array.from(galleryRef.current?.querySelectorAll<HTMLImageElement>("img") ?? []);
-    const loaded = (event: Event) => (event.currentTarget as HTMLImageElement).classList.remove("image-loading");
+    const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const timers = new Map<HTMLImageElement, ReturnType<typeof setTimeout>>();
+    const revealImage = (image: HTMLImageElement) => {
+      image.classList.remove("image-loading");
+      const timer = timers.get(image);
+      if (timer !== undefined) clearTimeout(timer);
+      timers.delete(image);
+    };
+    const loaded = (event: Event) => revealImage(event.currentTarget as HTMLImageElement);
     images.forEach((image) => {
       // Cached images and no-JS pages remain visible. Errors also clear opacity
       // so the browser's Korean alt text is never hidden by a loading class.
-      if (!image.complete) image.classList.add("image-loading");
+      if (!image.complete && !preference.matches) {
+        image.classList.add("image-loading");
+        // Fade duration 400ms + 300ms: stalled load/error events must fail open.
+        timers.set(image, setTimeout(() => revealImage(image), 700));
+      }
       image.addEventListener("load", loaded);
       image.addEventListener("error", loaded);
     });
-    return () => images.forEach((image) => {
-      image.classList.remove("image-loading");
-      image.removeEventListener("load", loaded);
-      image.removeEventListener("error", loaded);
-    });
+    const onPreference = () => { if (preference.matches) images.forEach(revealImage); };
+    preference.addEventListener("change", onPreference);
+    return () => {
+      preference.removeEventListener("change", onPreference);
+      images.forEach((image) => {
+        revealImage(image);
+        image.removeEventListener("load", loaded);
+        image.removeEventListener("error", loaded);
+      });
+    };
   }, []);
 
   useEffect(() => {
@@ -70,7 +87,7 @@ export function ImageGallery({ images, compact = false, className = "" }: { imag
       <div ref={galleryRef} className={`image-grid ${compact ? "image-grid-compact" : ""} ${className}`}>
         {images.map((item) => (
           <figure key={item.src} className="image-figure" data-owner={item.attribution} data-device={item.src.includes("/tablet/") ? "tablet" : item.src.includes("/watch/") ? "watch" : undefined}>
-            <a href={item.src} aria-label={`${attributionLabels[item.attribution]} · ${item.caption} · ${ui.enlarge}`} onClick={(event) => {
+            <a href={item.src} aria-label={`${item.attributionLabel ?? attributionLabels[item.attribution]} · ${item.caption} · ${ui.enlarge}`} onClick={(event) => {
               if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || typeof dialogRef.current?.showModal !== "function") return;
               event.preventDefault();
               triggerRef.current = event.currentTarget;
@@ -78,7 +95,7 @@ export function ImageGallery({ images, compact = false, className = "" }: { imag
             }}>
               <img src={item.src} width={item.width} height={item.height} alt={item.alt} loading="lazy" decoding="async" />
             </a>
-            <figcaption><span className="image-caption"><AttributionTag owner={item.attribution} /><span>{item.caption}</span></span><ExpandIcon /></figcaption>
+            <figcaption><span className="image-caption"><AttributionTag owner={item.attribution} label={item.attributionLabel} /><span>{compactCaption ? ui.enlarge : item.caption}</span></span><ExpandIcon /></figcaption>
           </figure>
         ))}
       </div>
@@ -93,7 +110,7 @@ export function ImageGallery({ images, compact = false, className = "" }: { imag
           triggerRef.current?.focus();
         }}>
         {selected && <div className="dialog-content" data-owner={selected.attribution}>
-          <div className="dialog-header"><p id={captionId}><AttributionTag owner={selected.attribution} /> {selected.caption}</p><button type="button" autoFocus onClick={close}>{ui.close}</button></div>
+          <div className="dialog-header"><p id={captionId}><AttributionTag owner={selected.attribution} label={selected.attributionLabel} /> {selected.caption}</p><button type="button" autoFocus onClick={close}>{ui.close}</button></div>
           <img src={selected.src} width={selected.width} height={selected.height} alt={selected.alt} />
         </div>}
       </dialog>

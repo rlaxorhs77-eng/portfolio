@@ -30,20 +30,20 @@ export default function Credits() {
           <div className="section-content">
             <h1 id="credits-title">{creditsCopy.title}</h1>
             <p className="credits-intro">{creditsCopy.intro}</p>
-            <table className="data-table credits-table">
+            <table className="data-table credits-table stacked-table" role="table">
               <caption className="sr-only">{creditsCopy.title}</caption>
               <thead><tr>{creditsCopy.headers.map((header) => <th scope="col" key={header}>{header}</th>)}</tr></thead>
               <tbody>{credits.map((credit) => <tr key={credit.id}>
-                <th scope="row">{credit.category}{credit.files.map((file) => <span className="credit-path" key={file}>{file}</span>)}</th>
-                <td data-label={creditsCopy.headers[1]}>
+                <th scope="row"><span className="mobile-cell-label" aria-hidden="true">{creditsCopy.headers[0]}</span>{credit.category}{credit.files.map((file) => <span className="credit-path" key={file}>{file}</span>)}</th>
+                <td><span className="mobile-cell-label" aria-hidden="true">{creditsCopy.headers[1]}</span>
                   {credit.sourceUrl && (!credit.privateSource || ORG_REPO_PUBLIC)
                     ? <a className="text-link" href={credit.sourceUrl} target="_blank" rel="noopener noreferrer">{credit.source}</a>
                     : <>{credit.source}{credit.privateSource && <p className="muted">{ui.privateRepo}</p>}</>}
                 </td>
-                <td data-label={creditsCopy.headers[2]}>{credit.licenseUrl
+                <td><span className="mobile-cell-label" aria-hidden="true">{creditsCopy.headers[2]}</span>{credit.licenseUrl
                   ? <a className="text-link" href={credit.licenseUrl} target="_blank" rel="noopener noreferrer">{credit.license}</a>
                   : credit.license}</td>
-                <td data-label={creditsCopy.headers[3]}>{credit.notice}</td>
+                <td><span className="mobile-cell-label" aria-hidden="true">{creditsCopy.headers[3]}</span>{credit.notice}</td>
               </tr>)}</tbody>
             </table>
             <p className="credits-unused">{creditsCopy.unused}</p>

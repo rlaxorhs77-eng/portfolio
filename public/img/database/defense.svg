@@ -1,18 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720">
   <title>데이터베이스의 방어 구조</title>
   <desc>CHECK로 값의 범위를 검사하고 RLS로 현장별 행 접근을 제한하며 트리거로 시각과 행위자를 강제하고 원천 측정값의 변경을 막습니다. RLS는 칸 단위 보호나 모든 우회의 방지를 보장하지 않습니다.</desc>
-  <rect width="1200" height="720" fill="#13161b"/>
-  <g font-family="Apple SD Gothic Neo, Pretendard GOV, sans-serif" fill="#e9ecf1">
+  <rect width="1200" height="720" fill="#ffffff"/>
+  <g font-family="Pretendard GOV Variable, Pretendard GOV, Apple SD Gothic Neo, sans-serif" fill="#111111">
     <text x="64" y="72" font-size="32" font-weight="600">서로 다른 위험을 나눠 막습니다</text>
-    <g fill="#191d24" stroke="#828e9c">
-      <rect x="64" y="122" width="1072" height="128" rx="4"/>
-      <rect x="64" y="280" width="1072" height="128" rx="4"/>
-      <rect x="64" y="438" width="1072" height="128" rx="4"/>
+    <g fill="#f6f5f2" stroke="#8c8880">
+      <rect x="64" y="122" width="1072" height="128" rx="2"/>
+      <rect x="64" y="280" width="1072" height="128" rx="2"/>
+      <rect x="64" y="438" width="1072" height="128" rx="2"/>
     </g>
-    <g stroke="#e0a34a" fill="none" stroke-width="2"><path d="M600 250v30m-7-9 7 9 7-9M600 408v30m-7-9 7 9 7-9"/></g>
-    <g font-size="28" fill="#e0a34a"><text x="96" y="176">CHECK</text><text x="96" y="334">RLS</text><text x="96" y="492">트리거</text></g>
+    <g stroke="#b8841c" fill="none" stroke-width="2"><path d="M600 250v30m-7-9 7 9 7-9M600 408v30m-7-9 7 9 7-9"/></g>
+    <g font-size="28" font-weight="600" fill="#111111"><text x="96" y="176">CHECK</text><text x="96" y="334">RLS</text><text x="96" y="492">트리거</text></g>
     <g font-size="27"><text x="328" y="175">값이 유효한 범위 안에 있는가</text><text x="328" y="333">이 현장의 데이터를 볼 권한이 있는가</text><text x="328" y="491">원천 측정값과 변경 근거가 보존되는가</text></g>
-    <g font-size="23" fill="#98a2b0"><text x="328" y="216">데이터 범위와 입력 제약</text><text x="328" y="374">현장별 행 접근 제한</text><text x="328" y="532">시각·행위자 강제, 원천 측정값 수정·삭제 방지</text></g>
-  <text x="64" y="628" font-size="23" fill="#98a2b0">RLS는 현장별 행 접근을 제어합니다.</text>
+    <g font-size="23" fill="#5c5c5c"><text x="328" y="216">데이터 범위와 입력 제약</text><text x="328" y="374">현장별 행 접근 제한</text><text x="328" y="532">시각·행위자 강제, 원천 측정값 수정·삭제 방지</text></g>
+  <text x="64" y="628" font-size="23" fill="#5c5c5c">RLS는 현장별 행 접근을 제어합니다.</text>
   </g>
 </svg>
