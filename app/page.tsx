@@ -17,7 +17,6 @@ import { RoleDetail } from "@/components/role-detail";
 import { VideoPlayer } from "@/components/video-player";
 import { Troubleshooting } from "@/components/troubleshooting";
 import { SkillStack } from "@/components/skill-stack";
-import { ThemeToggle } from "@/components/theme-toggle";
 import { UiIcon, type IconName } from "@/components/ui-icon";
 
 function Chapter({ id, title, description, icon, children }: { id: string; title: string; description?: string; icon: IconName; children: ReactNode }) {
@@ -44,7 +43,6 @@ export default function Home() {
       <div className="container header-inner">
         <a href="#요약" className="brand" aria-label={`${site.name} · ${ui.home}`}><span className="brand-mark">tg.</span><span className="brand-name">김태곤</span></a>
         <nav aria-label={ui.navigation} data-section-nav><ul>{navigation.map(item => <li key={item.href}><a href={item.href}>{item.label}</a></li>)}</ul><span className="nav-indicator" aria-hidden="true" /></nav>
-        <ThemeToggle />
       </div>
       <span className="scroll-progress" aria-hidden="true" />
     </header>

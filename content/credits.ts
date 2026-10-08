@@ -591,7 +591,7 @@ export const credits = [
     "id": "tabler-icons",
     "category": "Tabler UI 아이콘",
     "files": [
-      "public/img/icons/ (UI SVG 17종)"
+      "public/img/icons/ (UI SVG 15종)"
     ],
     "source": "Tabler Icons",
     "sourceUrl": "https://github.com/tabler/tabler-icons",

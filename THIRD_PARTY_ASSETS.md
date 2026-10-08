@@ -47,7 +47,7 @@ Pretendard 및 21st.dev 조건은 2026-10-08 제공된 조사와 작업 지시�
 
 ## 2026-10-08 P7 갱신
 
-- Tabler Icons: 공식 저장소 SVG 17종, MIT. `public/licenses/tabler-icons.txt`에 고지 보존.
+- Tabler Icons: 공식 저장소 SVG 15종, MIT. `public/licenses/tabler-icons.txt`에 고지 보존.
 - Simple Icons v16: 기술 스택 및 YouTube SVG 9종, CC0. `public/licenses/simple-icons.txt`에 원문 보존. 상표는 해당 권리자 소유이며 브랜드 식별에만 사용.
 - 출처·해시: 작업기록/qa/p7/icon-sources.json. 위 초기 '외부 아이콘 세트 미사용' 문구는 P5 시점 기록이며 현재는 신규 두 세트가 추가됨.
 - 21st MCP: Proximity Sidebar / Scroll Spy 검색·공개 미리보기 참고. 원 컴포넌트 소스 코드 복사·구매 없음. https://21st.dev/@amitgajare2/components/proximity-sidebar

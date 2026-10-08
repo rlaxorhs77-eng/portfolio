@@ -1,5 +1,3 @@
-html[data-theme="dark"] { color-scheme: dark; }
-html[data-theme="light"] { color-scheme: light; }
 /* P7: content-led developer portfolio. Cards 16px, controls 10px, icon wells round. */
 .portfolio-page {
   --bg: #fbfcfa; --surface: #f0f3ef; --text: #21312b; --muted: #5d6d65;
@@ -9,13 +7,7 @@ html[data-theme="light"] { color-scheme: light; }
   --chapter-video: #eaf0ec; --chapter-press: #f8f9f7; --chapter-contact: #e1eae3;
   background: var(--bg); color: var(--text);
 }
-html[data-theme="dark"] .portfolio-page {
-  --bg: #17201c; --surface: #24322b; --text: #edf3ed; --muted: #b2c1b7;
-  --line: #425348; --accent: #a3d3b2; --accent-soft: #2d4938; --panel: #24312a;
-  --chapter-intro: #1c2922; --chapter-skills: #202f27; --chapter-experience: #1a2422;
-  --chapter-project: #202b30; --chapter-cases: #2c2c25; --chapter-video: #203028;
-  --chapter-press: #1d2924; --chapter-contact: #293d30;
-}
+
 .portfolio-page .container { max-width: 1184px; padding-inline: 36px; }
 .portfolio-page .ui-icon { width: 22px; height: 22px; display: inline-block; flex: 0 0 auto; background: currentColor; mask: var(--icon-url) center / contain no-repeat; vertical-align: middle; }
 .portfolio-page .icon-youtube { color: #ff0033; }
@@ -35,8 +27,6 @@ html[data-theme="dark"] .portfolio-page {
 .portfolio-page .site-header nav ul { gap: 23px; }
 .portfolio-page .site-header nav a { font-size: 14px; color: var(--muted); white-space: nowrap; padding-block: 13px; }
 .portfolio-page .site-header nav a[aria-current] { color: var(--accent); font-weight: 650; }
-.theme-toggle { display: grid; place-items: center; width: 36px; height: 36px; flex: 0 0 auto; border: 1px solid var(--line); background: var(--panel); border-radius: 50%; }
-.theme-toggle:hover { background: var(--accent-soft); }
 .portfolio-page .nav-indicator { height: 2px; border-radius: 2px; }
 .portfolio-page .section-dots { right: 15px; }
 .portfolio-page .section-dots a { width: 32px; height: 26px; }
@@ -215,7 +205,6 @@ html[data-theme="dark"] .portfolio-page {
   .portfolio-page .header-inner { padding-inline: 24px; min-height: 60px; flex-wrap: wrap; gap: 0 16px; }
   .portfolio-page .brand { min-height: 56px; }
   .portfolio-page .brand .brand-name { display: inline; }
-  .portfolio-page .theme-toggle { margin-left: auto; order: 2; }
   .portfolio-page .site-header nav { width: 100%; order: 3; }
   .portfolio-page .site-header nav ul { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 0; }
   .portfolio-page .site-header nav a { padding-block: 9px; min-height: 42px; }
@@ -291,6 +280,6 @@ html[data-theme="dark"] .portfolio-page {
   .portfolio-main .document-section { background: white !important; padding-block: 28px; break-before: auto; }
   .portfolio-page .hero-layout, .experience-layout, .featured-project { display: block; }
   .hero-work { max-width: 400px; margin-top: 24px; }
-  .hero-actions, .skill-filters, .theme-toggle { display: none; }
+  .hero-actions, .skill-filters { display: none; }
   .contribution, .skill-group, .recognition { break-inside: avoid; }
 }
