@@ -7,9 +7,10 @@ frontend:
         # node_modules 대신 pnpm 스토어만 캐시하고 매번 새로 링크한다.
         - corepack enable && corepack prepare pnpm@11.1.2 --activate
         - pnpm config set store-dir .pnpm-store
-        # 이전 node_modules 캐시가 남아 있어도 링크를 다시 구성한다.
-        # 작업 4에서는 설치를 생략한 뒤 Next의 전이 의존성 로딩에 실패했다.
-        - pnpm install --frozen-lockfile --force
+        # 과거 캐시의 설치 디렉터리를 보관한 뒤 빈 위치에 링크를 구성한다.
+        # --force만으로는 작업 5에서도 설치를 생략하므로 CI 작업 디렉터리를 분리한다.
+        - 'if [ -e node_modules ]; then mv node_modules "$(mktemp -d /tmp/portfolio-deps.XXXXXX)/node_modules"; fi'
+        - pnpm install --frozen-lockfile
         - node scripts/verify-build-dependencies.mjs
     build:
       commands:
