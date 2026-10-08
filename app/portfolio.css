@@ -128,7 +128,7 @@ html[data-theme="dark"] .portfolio-page {
 .project-period { font-size: 13px; color: var(--muted); margin-bottom: 18px; }
 .project-period > span { margin-left: 14px; }
 .featured-title { display: flex; align-items: center; gap: 12px; }
-.featured-title img { width: 44px; height: 44px; border-radius: 12px; }
+.featured-title img { width: 44px; height: 44px; border-radius: 12px; background: #19251e; padding: 6px; }
 .featured-title h3 { font-size: 32px; letter-spacing: -.04em; }
 .project-one-liner { font-size: 21px; line-height: 1.55; font-weight: 650; margin-top: 22px; }
 .project-brief > p:not([class]) { margin-top: 12px; font-size: 15px; color: var(--muted); }
