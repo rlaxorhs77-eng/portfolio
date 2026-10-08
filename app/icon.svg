@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 1024 1024">
+  <title>김태곤 포트폴리오</title>
+  <rect width="1024" height="1024" fill="#ffffff"/>
+  <g transform="translate(-128 -90) scale(1.25)" fill="none" stroke="#b8841c" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M512 766 C317 668 238 530 238 385 L238 230 C313 215 375 213 512 130 C649 213 711 215 786 230 L786 385 C786 530 707 668 512 766 Z" stroke-width="39"/>
+    <path d="M210 470 H420 L470 336 L520 620 L579 388 L632 470 H810" stroke-width="31"/>
+  </g>
+</svg>

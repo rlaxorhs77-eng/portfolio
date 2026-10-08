@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720">
+<title>조직과 현장 중심의 데이터 관계</title>
+<desc>조직은 부서, 사용자, 현장과 연결됩니다. 사용자와 현장은 현장 구성원으로 연결되며 현장에는 장치, 경보, 계약과 증빙이 속합니다. 인벤토리 B-5 ERD의 관계를 요약했습니다.</desc>
+<rect width="1200" height="720" fill="#13161b"/>
+<g font-family="Apple SD Gothic Neo, Pretendard GOV, sans-serif" fill="#e9ecf1">
+<text x="64" y="72" font-size="32" font-weight="600">조직과 현장을 기준으로 연결합니다</text>
+<g fill="none" stroke="#e0a34a" stroke-width="2">
+<path d="M600 184V218H224V250M600 218V250M600 218H976V250M600 334V380M976 334V416H736M1112 292H1140V494H600V514M180 544V514H1020V544M460 514V544M740 514V544"/>
+</g>
+<g fill="#191d24" stroke="#828e9c">
+<rect x="464" y="116" width="272" height="68" rx="4"/>
+<rect x="88" y="250" width="272" height="84" rx="4"/>
+<rect x="464" y="250" width="272" height="84" rx="4"/>
+<rect x="840" y="250" width="272" height="84" rx="4"/>
+<rect x="464" y="380" width="272" height="72" rx="4"/>
+<rect x="64" y="544" width="232" height="80" rx="4"/>
+<rect x="344" y="544" width="232" height="80" rx="4"/>
+<rect x="624" y="544" width="232" height="80" rx="4"/>
+<rect x="904" y="544" width="232" height="80" rx="4"/>
+</g>
+<g text-anchor="middle" font-size="26">
+<text x="600" y="159">조직 · company</text>
+<text x="224" y="285">부서</text><text x="224" y="317" font-size="22" fill="#98a2b0">department</text>
+<text x="600" y="285">사용자</text><text x="600" y="317" font-size="22" fill="#98a2b0">app_user</text>
+<text x="976" y="285">현장</text><text x="976" y="317" font-size="22" fill="#98a2b0">site</text>
+<text x="600" y="410">현장 구성원</text><text x="600" y="439" font-size="22" fill="#98a2b0">site_member</text>
+<text x="180" y="578">장치</text><text x="180" y="606" font-size="22" fill="#98a2b0">device</text>
+<text x="460" y="578">경보</text><text x="460" y="606" font-size="22" fill="#98a2b0">alert</text>
+<text x="740" y="578">조달 계약</text><text x="740" y="606" font-size="19" fill="#98a2b0">procurement_contract</text>
+<text x="1020" y="578">증빙</text><text x="1020" y="606" font-size="22" fill="#98a2b0">media</text>
+</g>
+</g></svg>
