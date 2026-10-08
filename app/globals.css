@@ -97,20 +97,22 @@ strong { font-weight: 650; }
 .site-header nav a { display: block; text-align: center; padding-block: 10px; min-height: 44px; font-size: 14px; }
 
 .section-dots { position: fixed; right: max(10px, env(safe-area-inset-right)); top: 50%; transform: translateY(-50%); z-index: var(--layer-section-nav); }
-.section-dots a { width: 32px; height: 30px; display: grid; place-items: center; border-radius: 50%; }
-.section-dots a > span { display: block; width: 9px; height: 9px; border-radius: 50%; background: #cbd0d5; box-shadow: 0 0 0 1px #92999e; }
-.section-dots a[aria-current="location"] > span { background: #ffffff; transform: scale(1.3); box-shadow: 0 0 0 1px #92999e, 0 1px 5px rgb(45 54 59 / 22%); }
-.section-dots a:hover > span { transform: scale(1.3); }
-.section-dots a:active > span { transform: scale(.9); }
+.section-dots a { width: 32px; height: 24px; display: grid; place-items: center; border-radius: 50%; }
+.section-dots a > span { display: block; width: 6px; height: 6px; border-radius: 50%; background: #c5c9ce; }
+.section-dots a[aria-current="location"] > span { background: #ffffff; transform: scale(1.5); }
+.section-dots a:focus-visible { outline: 1px solid var(--muted); outline-offset: 1px; }
+@media (hover: hover) and (pointer: fine) {
+  .section-dots li:has(+ li:hover) > a:not([aria-current]) > span,
+  .section-dots li:hover + li > a:not([aria-current]) > span { transform: scale(1.15); }
+  .section-dots a:hover > span { transform: scale(1.5); }
+}
+.section-dots a:active > span { transform: scale(1.1); }
 @media (max-width: 1199px) {
   main > .document-section > .container { padding-right: 56px; }
 }
 @media (min-width: 1200px) {
-  .section-dots { right: 24px; }
-  .section-dots a { width: 40px; height: 34px; }
-}
-@media (max-height: 500px) {
-  .section-dots a { height: 24px; }
+  .section-dots { right: 28px; }
+  .section-dots a { width: 40px; }
 }
 
 .hero { padding-block: 40px 56px; }
